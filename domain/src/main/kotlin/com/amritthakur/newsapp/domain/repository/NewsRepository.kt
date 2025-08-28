@@ -1,6 +1,7 @@
 package com.amritthakur.newsapp.domain.repository
 
 import androidx.paging.PagingData
+import com.amritthakur.newsapp.domain.common.Result
 import com.amritthakur.newsapp.domain.entity.Article
 import com.amritthakur.newsapp.domain.entity.NewsParams
 import com.amritthakur.newsapp.domain.entity.Source
