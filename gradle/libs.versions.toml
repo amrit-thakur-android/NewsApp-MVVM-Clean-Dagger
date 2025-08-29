@@ -64,6 +64,7 @@ coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutin
 
 # Dependency Injection
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 
 # Paging
 paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
