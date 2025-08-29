@@ -2,6 +2,7 @@ package com.amritthakur.newsapp.di
 
 import android.app.Application
 import com.amritthakur.newsapp.NewsApplication
+import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -18,6 +19,9 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(application: NewsApplication)
+
+    // Expose functions
+    fun navigationChannel(): NavigationChannel
 
     @Component.Builder
     interface Builder {
