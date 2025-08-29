@@ -8,10 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationCoordinator
 import com.amritthakur.newsapp.presentation.navigation.Screen
+import com.amritthakur.newsapp.presentation.screen.HomeScreen
 
 @Composable
 fun AppNavigation(
@@ -43,5 +45,12 @@ fun AppNavigation(
         modifier = modifier
     ) {
 
+        composable(Screen.Home.route) {
+            val homeViewModel = remember { applicationComponent.homeViewModel() }
+            HomeScreen(
+                input = homeViewModel,
+                output = homeViewModel
+            )
+        }
     }
 }
