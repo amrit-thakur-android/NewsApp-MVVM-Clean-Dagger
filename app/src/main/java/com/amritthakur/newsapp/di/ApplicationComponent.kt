@@ -4,6 +4,7 @@ import android.app.Application
 import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
 import com.amritthakur.newsapp.presentation.viewmodel.HomeViewModel
+import com.amritthakur.newsapp.presentation.viewmodel.NewsViewModel
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -24,6 +25,7 @@ interface ApplicationComponent {
     // Expose functions
     fun navigationChannel(): NavigationChannel
     fun homeViewModel(): HomeViewModel
+    fun newsViewModel(): NewsViewModel
 
     @Component.Builder
     interface Builder {

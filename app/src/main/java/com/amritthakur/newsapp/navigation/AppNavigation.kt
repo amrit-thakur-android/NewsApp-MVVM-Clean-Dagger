@@ -7,13 +7,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationCoordinator
 import com.amritthakur.newsapp.presentation.navigation.Screen
 import com.amritthakur.newsapp.presentation.screen.HomeScreen
+import com.amritthakur.newsapp.presentation.screen.NewsScreen
 
 @Composable
 fun AppNavigation(
@@ -50,6 +53,41 @@ fun AppNavigation(
             HomeScreen(
                 input = homeViewModel,
                 output = homeViewModel
+            )
+        }
+
+        composable(
+            route = "news?source={source}&country={country}&language={language}",
+            arguments = listOf(
+                navArgument("source") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                },
+                navArgument("country") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                },
+                navArgument("language") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                }
+            )
+        ) { backStackEntry ->
+            val source = backStackEntry.arguments?.getString("source")
+            val country = backStackEntry.arguments?.getString("country")
+            val language = backStackEntry.arguments?.getString("language")
+
+            val newsViewModel = remember {
+                applicationComponent.newsViewModel().apply {
+                    updateParams(source, country, language)
+                }
+            }
+            NewsScreen(
+                input = newsViewModel,
+                output = newsViewModel
             )
         }
     }
