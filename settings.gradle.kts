@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "NewsApp-MVVM-Clean-Dagger"
 include(":app")
 include(":domain")
+include(":data")
  
