@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.amritthakur.newsapp"
+    namespace = "com.amritthakur.newsapp.data"
     compileSdk = 36
 
     defaultConfig {
