@@ -44,5 +44,7 @@ fun LoadingView() {
 @Preview(showBackground = true)
 @Composable
 fun LoadingViewPreview() {
-    LoadingView()
+    MaterialTheme {
+        LoadingView()
+    }
 }

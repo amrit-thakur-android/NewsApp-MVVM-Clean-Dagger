@@ -76,16 +76,20 @@ fun ErrorView(
 @Preview(showBackground = true)
 @Composable
 fun ErrorViewPreview() {
-    ErrorView(
-        message = "Internal server error",
-        onTryAgain = {}
-    )
+    MaterialTheme {
+        ErrorView(
+            message = "Internal server error",
+            onTryAgain = {}
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ErrorViewWithoutRetryPreview() {
-    ErrorView(
-        message = "Internal server error"
-    )
+    MaterialTheme {
+        ErrorView(
+            message = "Internal server error"
+        )
+    }
 }

@@ -60,8 +60,10 @@ fun EmptyView(
 @Preview(showBackground = true)
 @Composable
 fun EmptyViewNoNewsSearchPreview() {
-    EmptyView(
-        message = "No news found",
-        messageInfo = "No news found for this query. Please try a different query."
-    )
+    MaterialTheme {
+        EmptyView(
+            message = "No news found",
+            messageInfo = "No news found for this query. Please try a different query."
+        )
+    }
 }

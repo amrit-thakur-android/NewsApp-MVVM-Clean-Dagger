@@ -31,8 +31,10 @@ fun PrimaryButton(
 @Preview(showBackground = true)
 @Composable
 fun PrimaryButtonPreview() {
-    PrimaryButton(
-        title = "Primary Button",
-        onClick = {}
-    )
+    MaterialTheme {
+        PrimaryButton(
+            title = "Primary Button",
+            onClick = {}
+        )
+    }
 }
