@@ -61,7 +61,8 @@ This project uses **Dagger 2** which requires:
 This app is configured for Play Store submission with:
 - ✅ Secure API key management (BuildConfig)
 - ✅ ProGuard configuration for release builds
-- ✅ Google Play App Signing ready (no local keystores needed)
+- ✅ Proper release signing with keystore
+- ✅ Google Play App Signing ready
 - ✅ Android App Bundle (AAB) support
 - ✅ Privacy policy included
 - ✅ Proper permissions and manifest setup
@@ -72,12 +73,21 @@ This app is configured for Play Store submission with:
 - Debug logging disabled in release builds
 - ProGuard rules for code obfuscation
 - Network security best practices
+- Proper release keystore for app signing
 
-## 📱 Local Testing
+## 📱 Build & Testing
 
 - **Debug builds**: Automatically signed, ready to install
-- **Release builds**: Signed with debug keystore for local testing
-- **Play Store**: Google Play App Signing handles production signing
+- **Release builds**: Signed with release keystore for Play Store
+- **Local testing**: Both debug and release builds installable
+- **Play Store**: Google Play App Signing for production distribution
+
+## 🔑 Release Signing
+
+- **Keystore**: `app/release.keystore` (excluded from git)
+- **Validity**: 25,000 days (~68 years)
+- **Algorithm**: RSA 2048-bit with self-signed certificate
+- **Security**: Keystore passwords managed in build configuration
 
 ## 📄 Privacy
 

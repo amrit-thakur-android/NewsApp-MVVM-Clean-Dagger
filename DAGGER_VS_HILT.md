@@ -81,6 +81,8 @@ When creating the Hilt version, focus on:
 3. Using `@HiltViewModel` for ViewModels
 4. Leveraging `hiltViewModel()` in Compose
 5. Simplifying test setup with Hilt testing utilities
+6. Maintaining the same release signing configuration
+7. Keeping identical build optimization settings
 
 ---
 *Both approaches achieve the same result - the choice depends on your specific needs and preferences!*
