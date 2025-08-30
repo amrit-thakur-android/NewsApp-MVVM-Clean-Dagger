@@ -29,8 +29,15 @@ android {
         buildConfigField("String", "NEWS_API_KEY", "\"f26da49a11a6415593a21e293ade2072\"")
     }
 
-    // Debug signing config is automatically created by Android
-    // We'll use it for local testing of release builds
+    signingConfigs {
+        create("release") {
+            // Release keystore for Play Store submission
+            storeFile = file("release.keystore")
+            storePassword = "newsapp123"
+            keyAlias = "release"
+            keyPassword = "newsapp123"
+        }
+    }
 
     buildTypes {
         debug {
@@ -43,8 +50,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            // Use debug signing for local testing, Google Play App Signing for store
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
