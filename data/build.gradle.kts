@@ -17,12 +17,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Debug configuration for library (usually empty)
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            // Library modules don't need ProGuard configuration
+            // Rules are handled by the consuming app module
         }
     }
 
@@ -31,8 +31,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+        }
     }
 }
 
