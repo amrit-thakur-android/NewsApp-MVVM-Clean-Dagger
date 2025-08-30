@@ -25,16 +25,8 @@ android {
         buildConfigField("String", "NEWS_API_KEY", "\"f26da49a11a6415593a21e293ade2072\"")
     }
 
-    signingConfigs {
-        create("release") {
-            // For learning purposes, using debug keystore
-            // In production, you would use a proper release keystore
-            storeFile = file("debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
-    }
+    // Signing configs removed - using Google Play App Signing instead
+    // Google will handle signing when you upload AAB/APK to Play Console
 
     buildTypes {
         debug {
@@ -47,7 +39,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            signingConfig = signingConfigs.getByName("release")
+            // No signingConfig - Google Play App Signing will handle this
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

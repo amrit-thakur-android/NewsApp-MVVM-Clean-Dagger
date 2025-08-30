@@ -28,9 +28,14 @@ A modern Android news application built with Clean Architecture, MVVM pattern, a
 ./gradlew assembleDebug
 ```
 
-### Release Build
+### Release Build (APK)
 ```bash
 ./gradlew assembleRelease
+```
+
+### Release Build (AAB - Recommended for Play Store)
+```bash
+./gradlew bundleRelease
 ```
 
 ### Run Tests
@@ -43,7 +48,8 @@ A modern Android news application built with Clean Architecture, MVVM pattern, a
 This app is configured for Play Store submission with:
 - ✅ Secure API key management (BuildConfig)
 - ✅ ProGuard configuration for release builds
-- ✅ App signing configuration
+- ✅ Google Play App Signing ready (no local keystores needed)
+- ✅ Android App Bundle (AAB) support
 - ✅ Privacy policy included
 - ✅ Proper permissions and manifest setup
 
