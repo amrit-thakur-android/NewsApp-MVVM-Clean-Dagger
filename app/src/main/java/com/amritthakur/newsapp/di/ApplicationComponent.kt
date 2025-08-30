@@ -5,6 +5,7 @@ import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
 import com.amritthakur.newsapp.presentation.viewmodel.CountriesViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.HomeViewModel
+import com.amritthakur.newsapp.presentation.viewmodel.LanguagesViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.NewsViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.SourcesViewModel
 import dagger.BindsInstance
@@ -30,6 +31,7 @@ interface ApplicationComponent {
     fun newsViewModel(): NewsViewModel
     fun sourcesViewModel(): SourcesViewModel
     fun countriesViewModel(): CountriesViewModel
+    fun languagesViewModel(): LanguagesViewModel
 
     @Component.Builder
     interface Builder {

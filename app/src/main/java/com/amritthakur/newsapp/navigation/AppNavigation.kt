@@ -17,6 +17,7 @@ import com.amritthakur.newsapp.presentation.navigation.NavigationCoordinator
 import com.amritthakur.newsapp.presentation.navigation.Screen
 import com.amritthakur.newsapp.presentation.screen.CountriesScreen
 import com.amritthakur.newsapp.presentation.screen.HomeScreen
+import com.amritthakur.newsapp.presentation.screen.LanguagesScreen
 import com.amritthakur.newsapp.presentation.screen.NewsScreen
 import com.amritthakur.newsapp.presentation.screen.SourcesScreen
 
@@ -106,6 +107,14 @@ fun AppNavigation(
             CountriesScreen(
                 input = countriesViewModel,
                 output = countriesViewModel
+            )
+        }
+
+        composable(Screen.Languages.route) {
+            val languagesViewModel = remember { applicationComponent.languagesViewModel() }
+            LanguagesScreen(
+                input = languagesViewModel,
+                output = languagesViewModel
             )
         }
     }

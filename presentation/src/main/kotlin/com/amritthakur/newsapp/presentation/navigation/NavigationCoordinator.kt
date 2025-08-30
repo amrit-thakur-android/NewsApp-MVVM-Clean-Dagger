@@ -3,6 +3,7 @@ package com.amritthakur.newsapp.presentation.navigation
 import androidx.navigation.NavController
 import com.amritthakur.newsapp.presentation.viewmodel.CountriesNavigationEvent
 import com.amritthakur.newsapp.presentation.viewmodel.HomeNavigationEvent
+import com.amritthakur.newsapp.presentation.viewmodel.LanguagesNavigationEvent
 import com.amritthakur.newsapp.presentation.viewmodel.SourcesNavigationEvent
 
 class NavigationCoordinator(
@@ -21,6 +22,10 @@ class NavigationCoordinator(
 
             is CountriesNavigationEvent -> {
                 handleCountriesNavigationEvent(navigationEvent)
+            }
+
+            is LanguagesNavigationEvent -> {
+                handleLanguagesNavigationEvent(navigationEvent)
             }
         }
     }
@@ -71,6 +76,18 @@ class NavigationCoordinator(
                 navController.navigate(
                     Screen.News.createRoute(
                         country = countriesNavigationEvent.countryCode
+                    )
+                )
+            }
+        }
+    }
+
+    private fun handleLanguagesNavigationEvent(languagesNavigationEvent: LanguagesNavigationEvent) {
+        when (languagesNavigationEvent) {
+            is LanguagesNavigationEvent.NavigateToNews -> {
+                navController.navigate(
+                    Screen.News.createRoute(
+                        language = languagesNavigationEvent.languageCode
                     )
                 )
             }
