@@ -1,3 +1,7 @@
+// NewsApp - Dagger Edition
+// Clean Architecture + MVVM + Dagger 2 for Dependency Injection
+// For Hilt version, see: NewsApp-MVVM-Clean-Hilt repository
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)

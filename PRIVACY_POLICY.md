@@ -1,9 +1,11 @@
-# Privacy Policy for NewsApp
+# Privacy Policy for NewsApp - Dagger Edition
 
 **Last updated: August 30, 2025**
 
 ## Overview
-NewsApp is a learning project that displays news articles from NewsAPI.org. This privacy policy explains how we handle information in our app.
+NewsApp - Dagger Edition is a learning project that displays news articles from NewsAPI.org. This privacy policy explains how we handle information in our app.
+
+*Note: This privacy policy applies to the Dagger 2 version of NewsApp. A separate Hilt version may be available with its own privacy policy.*
 
 ## Information We Collect
 - **No Personal Information**: We do not collect, store, or process any personal information about users.
@@ -32,4 +34,4 @@ We may update this privacy policy from time to time. Any changes will be posted 
 This is a learning project. For questions about this privacy policy, you can contact the developer through the app store listing.
 
 ---
-*This app is created for educational purposes as part of Android development learning.*
+*This app is created for educational purposes as part of Android development learning, specifically demonstrating Clean Architecture with Dagger 2 dependency injection.*

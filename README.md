@@ -1,16 +1,29 @@
-# NewsApp - MVVM Clean Architecture with Dagger
+# NewsApp - MVVM Clean Architecture with Dagger 2
 
-A modern Android news application built with Clean Architecture, MVVM pattern, and Dagger 2 for dependency injection.
+A modern Android news application built with Clean Architecture, MVVM pattern, and **Dagger 2** for dependency injection.
+
+> 🔗 **Also Available**: [NewsApp - Hilt Edition](https://github.com/amritthakur/NewsApp-MVVM-Clean-Hilt) *(Coming Soon)*
+> Compare the same architecture implemented with **Hilt** dependency injection!
 
 ## 🏗️ Architecture
 
 - **Clean Architecture** with separate modules: `app`, `data`, `domain`, `presentation`
 - **MVVM Pattern** with ViewModels and StateFlow
-- **Dagger 2** for dependency injection
+- **Dagger 2** for dependency injection *(Manual DI setup with @Component, @Module)*
 - **Jetpack Compose** for modern UI
 - **Paging 3** for efficient data loading
 - **Retrofit** with Moshi for networking
 - **Coroutines & Flow** for asynchronous operations
+
+## 🆚 **Dagger 2 vs Hilt Comparison**
+
+This project uses **Dagger 2** which requires:
+- Manual component setup (`@Component`, `@Module`)
+- Explicit dependency graph management
+- More boilerplate but full control
+- Great for understanding DI fundamentals
+
+*For a **Hilt** implementation with simplified setup, check out the companion project!*
 
 ## 🚀 Features
 
@@ -80,14 +93,23 @@ See [PRIVACY_POLICY.md](PRIVACY_POLICY.md) for the complete privacy policy.
 
 ## 🛠️ Tech Stack
 
-- Kotlin
-- Jetpack Compose
-- Dagger 2
-- Retrofit + Moshi
-- OkHttp
-- Paging 3
-- Coroutines + Flow
-- JUnit + MockK
+- **Language**: Kotlin
+- **UI**: Jetpack Compose
+- **DI**: Dagger 2 (Manual setup)
+- **Networking**: Retrofit + Moshi + OkHttp
+- **Async**: Coroutines + Flow
+- **Pagination**: Paging 3
+- **Testing**: JUnit + MockK
+- **Architecture**: Clean Architecture + MVVM
+
+## 📚 **Learning Series**
+
+This is part of a learning series comparing different DI approaches:
+
+1. **📍 Current**: [NewsApp with Dagger 2](.) - Manual DI setup
+2. **🔜 Coming**: NewsApp with Hilt - Simplified DI with annotations
+
+Both projects implement identical features using Clean Architecture, allowing you to compare the DI approaches side-by-side!
 
 ---
-*This is a learning project demonstrating modern Android development practices.*
+*This is a learning project demonstrating modern Android development practices with Dagger 2.*
