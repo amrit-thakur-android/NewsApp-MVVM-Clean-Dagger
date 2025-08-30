@@ -5,11 +5,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.annotation.RequiresPermission
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class NetworkConnectivityManagerImpl @Inject constructor(
+class NetworkConnectivityManagerImpl(
     context: Context
 ) : NetworkConnectivityManager {
 
