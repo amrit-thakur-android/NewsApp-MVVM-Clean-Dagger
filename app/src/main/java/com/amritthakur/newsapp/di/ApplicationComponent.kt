@@ -3,6 +3,7 @@ package com.amritthakur.newsapp.di
 import android.app.Application
 import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
+import com.amritthakur.newsapp.presentation.viewmodel.CountriesViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.HomeViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.NewsViewModel
 import com.amritthakur.newsapp.presentation.viewmodel.SourcesViewModel
@@ -28,6 +29,7 @@ interface ApplicationComponent {
     fun homeViewModel(): HomeViewModel
     fun newsViewModel(): NewsViewModel
     fun sourcesViewModel(): SourcesViewModel
+    fun countriesViewModel(): CountriesViewModel
 
     @Component.Builder
     interface Builder {

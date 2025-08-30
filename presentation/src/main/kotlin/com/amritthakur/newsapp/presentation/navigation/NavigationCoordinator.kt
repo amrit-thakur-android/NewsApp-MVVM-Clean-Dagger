@@ -1,6 +1,7 @@
 package com.amritthakur.newsapp.presentation.navigation
 
 import androidx.navigation.NavController
+import com.amritthakur.newsapp.presentation.viewmodel.CountriesNavigationEvent
 import com.amritthakur.newsapp.presentation.viewmodel.HomeNavigationEvent
 import com.amritthakur.newsapp.presentation.viewmodel.SourcesNavigationEvent
 
@@ -16,6 +17,10 @@ class NavigationCoordinator(
 
             is SourcesNavigationEvent -> {
                 handleSourcesNavigationEvent(navigationEvent)
+            }
+
+            is CountriesNavigationEvent -> {
+                handleCountriesNavigationEvent(navigationEvent)
             }
         }
     }
@@ -54,6 +59,18 @@ class NavigationCoordinator(
                 navController.navigate(
                     Screen.News.createRoute(
                         source = sourcesNavigationEvent.sourceId
+                    )
+                )
+            }
+        }
+    }
+
+    private fun handleCountriesNavigationEvent(countriesNavigationEvent: CountriesNavigationEvent) {
+        when (countriesNavigationEvent) {
+            is CountriesNavigationEvent.NavigateToNews -> {
+                navController.navigate(
+                    Screen.News.createRoute(
+                        country = countriesNavigationEvent.countryCode
                     )
                 )
             }

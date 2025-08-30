@@ -15,6 +15,7 @@ import androidx.navigation.navArgument
 import com.amritthakur.newsapp.NewsApplication
 import com.amritthakur.newsapp.presentation.navigation.NavigationCoordinator
 import com.amritthakur.newsapp.presentation.navigation.Screen
+import com.amritthakur.newsapp.presentation.screen.CountriesScreen
 import com.amritthakur.newsapp.presentation.screen.HomeScreen
 import com.amritthakur.newsapp.presentation.screen.NewsScreen
 import com.amritthakur.newsapp.presentation.screen.SourcesScreen
@@ -97,6 +98,14 @@ fun AppNavigation(
             SourcesScreen(
                 input = sourcesViewModel,
                 output = sourcesViewModel
+            )
+        }
+
+        composable(Screen.Countries.route) {
+            val countriesViewModel = remember { applicationComponent.countriesViewModel() }
+            CountriesScreen(
+                input = countriesViewModel,
+                output = countriesViewModel
             )
         }
     }
