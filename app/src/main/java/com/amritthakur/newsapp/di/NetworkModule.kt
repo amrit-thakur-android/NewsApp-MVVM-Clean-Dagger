@@ -1,6 +1,7 @@
 package com.amritthakur.newsapp.di
 
 import android.content.Context
+import com.amritthakur.newsapp.BuildConfig
 import com.amritthakur.newsapp.data.remote.api.NewsApiService
 import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
 import com.amritthakur.newsapp.data.util.NetworkConnectivityManagerImpl
@@ -22,7 +23,6 @@ class NetworkModule {
     companion object {
         private const val BASE_URL = "https://newsapi.org/"
         private const val TIMEOUT_SECONDS = 30L
-        private const val API_KEY = "f26da49a11a6415593a21e293ade2072"
     }
 
     @Provides
@@ -36,25 +36,29 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-
         val requestInterceptor = Interceptor { chain ->
             val request = chain.request()
             val newRequest = request.newBuilder()
-                .addHeader("X-Api-Key", API_KEY)
+                .addHeader("X-Api-Key", BuildConfig.NEWS_API_KEY)
                 .build()
             chain.proceed(newRequest)
         }
 
-        return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+        val builder = OkHttpClient.Builder()
             .addInterceptor(requestInterceptor)
             .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .build()
+
+        // Only add logging interceptor in debug builds
+        if (BuildConfig.DEBUG) {
+            val loggingInterceptor = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+            builder.addInterceptor(loggingInterceptor)
+        }
+
+        return builder.build()
     }
 
     @Provides

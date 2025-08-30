@@ -20,15 +20,34 @@ android {
 
         // Keep only English resources for smaller APK size
         androidResources.localeFilters += listOf("en")
+
+        // Add API key to BuildConfig for security
+        buildConfigField("String", "NEWS_API_KEY", "\"f26da49a11a6415593a21e293ade2072\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            // For learning purposes, using debug keystore
+            // In production, you would use a proper release keystore
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {
         debug {
             // No minification/proguard for debug builds
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            isDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -46,6 +65,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

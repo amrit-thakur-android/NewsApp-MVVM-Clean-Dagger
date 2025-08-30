@@ -14,3 +14,9 @@
 .cxx
 local.properties
 /.idea
+
+# Keystores (NEVER commit these!)
+*.keystore
+*.jks
+app/debug.keystore
+app/release.keystore

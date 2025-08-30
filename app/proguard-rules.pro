@@ -205,7 +205,7 @@
 
 # Keep companion objects
 -keepclassmembers class * {
-    public static **$Companion;
+    public static ** Companion;
 }
 
 # Keep enum classes
