@@ -2,6 +2,7 @@ package com.amritthakur.newsapp.presentation.navigation
 
 import androidx.navigation.NavController
 import com.amritthakur.newsapp.presentation.viewmodel.HomeNavigationEvent
+import com.amritthakur.newsapp.presentation.viewmodel.SourcesNavigationEvent
 
 class NavigationCoordinator(
     private val navController: NavController
@@ -11,6 +12,10 @@ class NavigationCoordinator(
         when (navigationEvent) {
             is HomeNavigationEvent -> {
                 handleHomeNavigationEvent(navigationEvent)
+            }
+
+            is SourcesNavigationEvent -> {
+                handleSourcesNavigationEvent(navigationEvent)
             }
         }
     }
@@ -39,6 +44,18 @@ class NavigationCoordinator(
 
             HomeNavigationEvent.NavigateToSearch -> {
                 navController.navigate(Screen.Search.route)
+            }
+        }
+    }
+
+    private fun handleSourcesNavigationEvent(sourcesNavigationEvent: SourcesNavigationEvent) {
+        when (sourcesNavigationEvent) {
+            is SourcesNavigationEvent.NavigateToNews -> {
+                navController.navigate(
+                    Screen.News.createRoute(
+                        source = sourcesNavigationEvent.sourceId
+                    )
+                )
             }
         }
     }

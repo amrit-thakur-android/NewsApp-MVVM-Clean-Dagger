@@ -17,6 +17,7 @@ import com.amritthakur.newsapp.presentation.navigation.NavigationCoordinator
 import com.amritthakur.newsapp.presentation.navigation.Screen
 import com.amritthakur.newsapp.presentation.screen.HomeScreen
 import com.amritthakur.newsapp.presentation.screen.NewsScreen
+import com.amritthakur.newsapp.presentation.screen.SourcesScreen
 
 @Composable
 fun AppNavigation(
@@ -88,6 +89,14 @@ fun AppNavigation(
             NewsScreen(
                 input = newsViewModel,
                 output = newsViewModel
+            )
+        }
+
+        composable(Screen.Sources.route) {
+            val sourcesViewModel = remember { applicationComponent.sourcesViewModel() }
+            SourcesScreen(
+                input = sourcesViewModel,
+                output = sourcesViewModel
             )
         }
     }
