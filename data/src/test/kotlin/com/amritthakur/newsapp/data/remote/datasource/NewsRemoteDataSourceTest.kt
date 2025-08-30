@@ -9,6 +9,7 @@ import com.amritthakur.newsapp.data.remote.dto.SourceDto
 import com.amritthakur.newsapp.data.remote.response.NewsResponse
 import com.amritthakur.newsapp.data.remote.response.SourcesResponse
 import com.amritthakur.newsapp.data.remote.util.toError
+import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -26,12 +27,17 @@ import java.io.IOException
 class NewsRemoteDataSourceTest {
 
     private val mockNewsApiService = mockk<NewsApiService>()
-    private val newsRemoteDataSource = NewsRemoteDataSource(mockNewsApiService)
+    private val mockNetworkConnectivityManager = mockk<NetworkConnectivityManager>()
+    private val newsRemoteDataSource =
+        NewsRemoteDataSource(mockNewsApiService, mockNetworkConnectivityManager)
 
     @Before
     fun setup() {
         // Mock the extension functions from ErrorUtil
         mockkStatic("com.amritthakur.newsapp.data.remote.util.ErrorUtilKt")
+
+        // Mock network connectivity to return true by default
+        every { mockNetworkConnectivityManager.isNetworkAvailable() } returns true
     }
 
     @After
@@ -508,5 +514,57 @@ class NewsRemoteDataSourceTest {
                 )
             }
         }
+    }
+
+    // ========== Network Connectivity Tests ==========
+
+    @Test
+    fun `getNews should return network error when no internet connection`() = runTest {
+        // Given
+        every { mockNetworkConnectivityManager.isNetworkAvailable() } returns false
+        val params = NewsParams(country = "us")
+
+        // When
+        val result = newsRemoteDataSource.getNews(params)
+
+        // Then
+        assertTrue("Expected network error", result is Result.Error)
+        val error = result as Result.Error
+        assertEquals(-1, error.httpCode)
+        assertEquals("NetworkError", error.errorCode)
+        assertEquals("No internet connection available", error.errorMessage)
+    }
+
+    @Test
+    fun `getSources should return network error when no internet connection`() = runTest {
+        // Given
+        every { mockNetworkConnectivityManager.isNetworkAvailable() } returns false
+
+        // When
+        val result = newsRemoteDataSource.getSources()
+
+        // Then
+        assertTrue("Expected network error", result is Result.Error)
+        val error = result as Result.Error
+        assertEquals(-1, error.httpCode)
+        assertEquals("NetworkError", error.errorCode)
+        assertEquals("No internet connection available", error.errorMessage)
+    }
+
+    @Test
+    fun `searchNews should return network error when no internet connection`() = runTest {
+        // Given
+        every { mockNetworkConnectivityManager.isNetworkAvailable() } returns false
+        val query = "test"
+
+        // When
+        val result = newsRemoteDataSource.searchNews(query)
+
+        // Then
+        assertTrue("Expected network error", result is Result.Error)
+        val error = result as Result.Error
+        assertEquals(-1, error.httpCode)
+        assertEquals("NetworkError", error.errorCode)
+        assertEquals("No internet connection available", error.errorMessage)
     }
 }

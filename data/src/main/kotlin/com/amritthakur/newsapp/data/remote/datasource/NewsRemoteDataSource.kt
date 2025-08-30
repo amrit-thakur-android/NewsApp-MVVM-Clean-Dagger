@@ -6,12 +6,14 @@ import com.amritthakur.newsapp.data.remote.api.NewsApiService
 import com.amritthakur.newsapp.data.remote.response.NewsResponse
 import com.amritthakur.newsapp.data.remote.response.SourcesResponse
 import com.amritthakur.newsapp.data.remote.util.toError
+import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NewsRemoteDataSource @Inject constructor(
-    private val newsApiService: NewsApiService
+    private val newsApiService: NewsApiService,
+    private val networkConnectivityManager: NetworkConnectivityManager
 ) {
 
     suspend fun getNews(
@@ -19,6 +21,11 @@ class NewsRemoteDataSource @Inject constructor(
         pageSize: Int? = null,
         page: Int? = null
     ): Result<NewsResponse> {
+        // Check network connectivity before making the API call
+        if (!networkConnectivityManager.isNetworkAvailable()) {
+            return Result.Error(-1, "NetworkError", "No internet connection available")
+        }
+
         return try {
             val response = newsApiService.getNews(
                 country = newsParams.country,
@@ -44,6 +51,11 @@ class NewsRemoteDataSource @Inject constructor(
     }
 
     suspend fun getSources(): Result<SourcesResponse> {
+        // Check network connectivity before making the API call
+        if (!networkConnectivityManager.isNetworkAvailable()) {
+            return Result.Error(-1, "NetworkError", "No internet connection available")
+        }
+
         return try {
             val response = newsApiService.getSources()
 
@@ -67,6 +79,11 @@ class NewsRemoteDataSource @Inject constructor(
         pageSize: Int? = null,
         page: Int? = null
     ): Result<NewsResponse> {
+        // Check network connectivity before making the API call
+        if (!networkConnectivityManager.isNetworkAvailable()) {
+            return Result.Error(-1, "NetworkError", "No internet connection available")
+        }
+
         return try {
             val response = newsApiService.searchNews(
                 query = query,

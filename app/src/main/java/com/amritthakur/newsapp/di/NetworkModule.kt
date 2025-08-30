@@ -1,6 +1,9 @@
 package com.amritthakur.newsapp.di
 
+import android.content.Context
 import com.amritthakur.newsapp.data.remote.api.NewsApiService
+import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
+import com.amritthakur.newsapp.data.util.NetworkConnectivityManagerImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -71,5 +74,11 @@ class NetworkModule {
     @Singleton
     fun provideNewsApiService(retrofit: Retrofit): NewsApiService {
         return retrofit.create(NewsApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkConnectivityManager(context: Context): NetworkConnectivityManager {
+        return NetworkConnectivityManagerImpl(context)
     }
 }
