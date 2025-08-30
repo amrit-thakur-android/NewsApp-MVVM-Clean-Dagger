@@ -73,6 +73,12 @@ This app is configured for Play Store submission with:
 - ProGuard rules for code obfuscation
 - Network security best practices
 
+## 📱 Local Testing
+
+- **Debug builds**: Automatically signed, ready to install
+- **Release builds**: Signed with debug keystore for local testing
+- **Play Store**: Google Play App Signing handles production signing
+
 ## 📄 Privacy
 
 See [PRIVACY_POLICY.md](PRIVACY_POLICY.md) for the complete privacy policy.

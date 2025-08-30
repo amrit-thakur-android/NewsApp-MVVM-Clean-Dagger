@@ -29,8 +29,8 @@ android {
         buildConfigField("String", "NEWS_API_KEY", "\"f26da49a11a6415593a21e293ade2072\"")
     }
 
-    // Signing configs removed - using Google Play App Signing instead
-    // Google will handle signing when you upload AAB/APK to Play Console
+    // Debug signing config is automatically created by Android
+    // We'll use it for local testing of release builds
 
     buildTypes {
         debug {
@@ -43,7 +43,8 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            // No signingConfig - Google Play App Signing will handle this
+            // Use debug signing for local testing, Google Play App Signing for store
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

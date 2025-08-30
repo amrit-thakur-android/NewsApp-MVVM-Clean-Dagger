@@ -15,6 +15,10 @@
 local.properties
 /.idea
 
+# Build directories for all modules
+**/build/
+build/
+
 # Keystores (NEVER commit these!)
 *.keystore
 *.jks
