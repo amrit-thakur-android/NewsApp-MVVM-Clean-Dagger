@@ -2,6 +2,7 @@ package com.amritthakur.newsapp.data.repository
 
 import com.amritthakur.newsapp.domain.common.Result
 import com.amritthakur.newsapp.domain.entity.NewsParams
+import com.amritthakur.newsapp.data.local.datasource.NewsLocalDataSource
 import com.amritthakur.newsapp.data.remote.datasource.NewsRemoteDataSource
 import com.amritthakur.newsapp.data.remote.dto.SourceDto
 import com.amritthakur.newsapp.data.remote.response.SourcesResponse
@@ -15,7 +16,9 @@ import org.junit.Assert.*
 class NewsRepositoryImplTest {
 
     private val mockNewsRemoteDataSource = mockk<NewsRemoteDataSource>()
-    private val newsRepository = NewsRepositoryImpl(mockNewsRemoteDataSource)
+    private val mockNewsLocalDataSource = mockk<NewsLocalDataSource>()
+    private val newsRepository =
+        NewsRepositoryImpl(mockNewsRemoteDataSource, mockNewsLocalDataSource)
 
     // ========== getSources Tests ==========
 
@@ -308,4 +311,144 @@ class NewsRepositoryImplTest {
             assertNotNull("Failed for query: '$query'", result)
         }
     }
+
+    // ========== getCountries Tests ==========
+
+    @Test
+    fun `getCountries should return success when local data source returns data`() = runTest {
+        // Given
+        val mockCountriesMap = mapOf(
+            "us" to "United States",
+            "gb" to "United Kingdom",
+            "ca" to "Canada"
+        )
+        coEvery { mockNewsLocalDataSource.getCountries() } returns mockCountriesMap
+
+        // When
+        val result = newsRepository.getCountries()
+
+        // Then
+        assertTrue(result is Result.Success)
+        val countries = (result as Result.Success).data
+        assertEquals(3, countries.size)
+
+        assertEquals("us", countries[0].code)
+        assertEquals("United States", countries[0].name)
+
+        assertEquals("gb", countries[1].code)
+        assertEquals("United Kingdom", countries[1].name)
+
+        assertEquals("ca", countries[2].code)
+        assertEquals("Canada", countries[2].name)
+
+        coVerify(exactly = 1) { mockNewsLocalDataSource.getCountries() }
+    }
+
+    @Test
+    fun `getCountries should return error when local data source throws exception`() = runTest {
+        // Given
+        val exception = RuntimeException("Local data error")
+        coEvery { mockNewsLocalDataSource.getCountries() } throws exception
+
+        // When
+        val result = newsRepository.getCountries()
+
+        // Then
+        assertTrue(result is Result.Error)
+        val error = result as Result.Error
+        assertEquals(-1, error.httpCode)
+        assertEquals("LocalDataError", error.errorCode)
+        assertTrue(error.errorMessage?.contains("Failed to load countries") == true)
+        assertTrue(error.errorMessage?.contains("Local data error") == true)
+
+        coVerify(exactly = 1) { mockNewsLocalDataSource.getCountries() }
+    }
+
+    @Test
+    fun `getCountries should return success with empty list when local data source returns empty map`() =
+        runTest {
+            // Given
+            val emptyMap = emptyMap<String, String>()
+            coEvery { mockNewsLocalDataSource.getCountries() } returns emptyMap
+
+            // When
+            val result = newsRepository.getCountries()
+
+            // Then
+            assertTrue(result is Result.Success)
+            val countries = (result as Result.Success).data
+            assertTrue(countries.isEmpty())
+
+            coVerify(exactly = 1) { mockNewsLocalDataSource.getCountries() }
+        }
+
+    // ========== getLanguages Tests ==========
+
+    @Test
+    fun `getLanguages should return success when local data source returns data`() = runTest {
+        // Given
+        val mockLanguagesMap = mapOf(
+            "en" to "English",
+            "es" to "Spanish",
+            "fr" to "French"
+        )
+        coEvery { mockNewsLocalDataSource.getLanguages() } returns mockLanguagesMap
+
+        // When
+        val result = newsRepository.getLanguages()
+
+        // Then
+        assertTrue(result is Result.Success)
+        val languages = (result as Result.Success).data
+        assertEquals(3, languages.size)
+
+        assertEquals("en", languages[0].code)
+        assertEquals("English", languages[0].name)
+
+        assertEquals("es", languages[1].code)
+        assertEquals("Spanish", languages[1].name)
+
+        assertEquals("fr", languages[2].code)
+        assertEquals("French", languages[2].name)
+
+        coVerify(exactly = 1) { mockNewsLocalDataSource.getLanguages() }
+    }
+
+    @Test
+    fun `getLanguages should return error when local data source throws exception`() = runTest {
+        // Given
+        val exception = RuntimeException("Local data error")
+        coEvery { mockNewsLocalDataSource.getLanguages() } throws exception
+
+        // When
+        val result = newsRepository.getLanguages()
+
+        // Then
+        assertTrue(result is Result.Error)
+        val error = result as Result.Error
+        assertEquals(-1, error.httpCode)
+        assertEquals("LocalDataError", error.errorCode)
+        assertTrue(error.errorMessage?.contains("Failed to load languages") == true)
+        assertTrue(error.errorMessage?.contains("Local data error") == true)
+
+        coVerify(exactly = 1) { mockNewsLocalDataSource.getLanguages() }
+    }
+
+    @Test
+    fun `getLanguages should return success with empty list when local data source returns empty map`() =
+        runTest {
+            // Given
+            val emptyMap = emptyMap<String, String>()
+            coEvery { mockNewsLocalDataSource.getLanguages() } returns emptyMap
+
+            // When
+            val result = newsRepository.getLanguages()
+
+            // Then
+            assertTrue(result is Result.Success)
+            val languages = (result as Result.Success).data
+            assertTrue(languages.isEmpty())
+
+            coVerify(exactly = 1) { mockNewsLocalDataSource.getLanguages() }
+        }
 }
