@@ -27,6 +27,8 @@
 
     // Empty view
     <string name="no_sources_found">No sources found</string>
+    <string name="no_countries_found">No countries found</string>
+    <string name="no_languages_found">No languages found</string>
     <string name="no_news_found">No news found</string>
     <string name="no_news_found_info_search">No news found for this query. Please try a different query.</string>
     <string name="enter_query">Enter a query to search for news</string>
