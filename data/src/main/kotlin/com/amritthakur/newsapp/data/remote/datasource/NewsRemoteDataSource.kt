@@ -1,12 +1,12 @@
 package com.amritthakur.newsapp.data.remote.datasource
 
-import com.amritthakur.newsapp.domain.common.Result
-import com.amritthakur.newsapp.domain.entity.NewsParams
 import com.amritthakur.newsapp.data.remote.api.NewsApiService
 import com.amritthakur.newsapp.data.remote.response.NewsResponse
 import com.amritthakur.newsapp.data.remote.response.SourcesResponse
 import com.amritthakur.newsapp.data.remote.util.toError
 import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
+import com.amritthakur.newsapp.domain.common.Result
+import com.amritthakur.newsapp.domain.entity.NewsParams
 import javax.inject.Inject
 import javax.inject.Singleton
 

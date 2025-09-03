@@ -1,7 +1,7 @@
 package com.amritthakur.newsapp.data.remote.util
 
-import com.amritthakur.newsapp.domain.common.Result.Error
 import com.amritthakur.newsapp.data.remote.dto.ErrorDto
+import com.amritthakur.newsapp.domain.common.Result.Error
 import com.squareup.moshi.Moshi
 import retrofit2.Response
 

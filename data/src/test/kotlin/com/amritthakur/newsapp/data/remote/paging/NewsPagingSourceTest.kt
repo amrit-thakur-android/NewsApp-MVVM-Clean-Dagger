@@ -2,19 +2,21 @@ package com.amritthakur.newsapp.data.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.amritthakur.newsapp.domain.common.Result
-import com.amritthakur.newsapp.domain.entity.Article
-import com.amritthakur.newsapp.domain.entity.NewsParams
 import com.amritthakur.newsapp.data.remote.datasource.NewsRemoteDataSource
 import com.amritthakur.newsapp.data.remote.dto.ArticleDto
 import com.amritthakur.newsapp.data.remote.dto.ArticleSourceDto
 import com.amritthakur.newsapp.data.remote.response.NewsResponse
+import com.amritthakur.newsapp.domain.common.Result
+import com.amritthakur.newsapp.domain.entity.Article
+import com.amritthakur.newsapp.domain.entity.NewsParams
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.Assert.*
 
 class NewsPagingSourceTest {
 

@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
     id("com.google.devtools.ksp")
 }
 
@@ -39,17 +38,11 @@ android {
 }
 
 dependencies {
-    // Domain module dependency
     implementation(project(":domain"))
 
-    // Core Android
     implementation(libs.androidx.core.ktx)
-
-    // Coroutines
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
-
-    // Networking
     implementation(libs.retrofit)
     implementation(libs.retrofit.moshi)
     implementation(libs.okhttp)
@@ -57,13 +50,9 @@ dependencies {
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
     ksp(libs.moshi.codegen)
-
-    implementation(libs.dagger)
-
-    // Paging
+    implementation(libs.javax.inject)
     implementation(libs.paging.runtime)
 
-    // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.coroutines.test)

@@ -1,7 +1,5 @@
 package com.amritthakur.newsapp.data.remote.datasource
 
-import com.amritthakur.newsapp.domain.common.Result
-import com.amritthakur.newsapp.domain.entity.NewsParams
 import com.amritthakur.newsapp.data.remote.api.NewsApiService
 import com.amritthakur.newsapp.data.remote.dto.ArticleDto
 import com.amritthakur.newsapp.data.remote.dto.ArticleSourceDto
@@ -10,6 +8,8 @@ import com.amritthakur.newsapp.data.remote.response.NewsResponse
 import com.amritthakur.newsapp.data.remote.response.SourcesResponse
 import com.amritthakur.newsapp.data.remote.util.toError
 import com.amritthakur.newsapp.data.util.NetworkConnectivityManager
+import com.amritthakur.newsapp.domain.common.Result
+import com.amritthakur.newsapp.domain.entity.NewsParams
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -18,9 +18,10 @@ import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
 import kotlinx.coroutines.test.runTest
 import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert.*
 import retrofit2.Response
 import java.io.IOException
 

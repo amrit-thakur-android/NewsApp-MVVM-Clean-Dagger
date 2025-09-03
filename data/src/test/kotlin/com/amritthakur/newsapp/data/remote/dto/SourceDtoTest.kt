@@ -1,7 +1,8 @@
 package com.amritthakur.newsapp.data.remote.dto
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.Assert.*
 
 class SourceDtoTest {
 
