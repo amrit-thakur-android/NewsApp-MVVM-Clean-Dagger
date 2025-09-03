@@ -1,7 +1,8 @@
 package com.amritthakur.newsapp.domain.common
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.Assert.*
 
 class DomainErrorUtilTest {
 

@@ -15,16 +15,10 @@ kotlin {
 }
 
 dependencies {
-    // Coroutines for async operations
     implementation(libs.coroutines.core)
-
-    // Dependency Injection
-    implementation(libs.dagger)
-
-    // Paging
+    implementation(libs.javax.inject)
     implementation(libs.paging.common)
 
-    // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.coroutines.test)
