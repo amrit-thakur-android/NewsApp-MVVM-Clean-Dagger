@@ -5,7 +5,9 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,16 +18,16 @@ import androidx.core.net.toUri
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
+import com.amritthakur.newsapp.domain.entity.Article
+import com.amritthakur.newsapp.presentation.R
+import com.amritthakur.newsapp.presentation.component.EmptyView
 import com.amritthakur.newsapp.presentation.component.ErrorView
 import com.amritthakur.newsapp.presentation.component.LoadingView
 import com.amritthakur.newsapp.presentation.component.NewsItem
-import com.amritthakur.newsapp.presentation.component.EmptyView
-import com.amritthakur.newsapp.domain.entity.Article
 import com.amritthakur.newsapp.presentation.viewmodel.NewsInput
 import com.amritthakur.newsapp.presentation.viewmodel.NewsOutput
-import com.amritthakur.newsapp.presentation.R
 
 @Composable
 fun NewsScreen(

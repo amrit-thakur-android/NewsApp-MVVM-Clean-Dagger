@@ -2,13 +2,13 @@ package com.amritthakur.newsapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amritthakur.newsapp.presentation.common.DispatcherProvider
 import com.amritthakur.newsapp.domain.common.Outcome
+import com.amritthakur.newsapp.domain.usecase.GetSourcesUseCase
+import com.amritthakur.newsapp.presentation.common.DispatcherProvider
 import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
 import com.amritthakur.newsapp.presentation.navigation.NavigationEvent
 import com.amritthakur.newsapp.presentation.state.SourcesUiState
 import com.amritthakur.newsapp.presentation.state.UiState
-import com.amritthakur.newsapp.domain.usecase.GetSourcesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

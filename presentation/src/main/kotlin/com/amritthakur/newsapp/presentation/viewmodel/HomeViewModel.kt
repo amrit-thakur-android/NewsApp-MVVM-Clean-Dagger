@@ -1,5 +1,6 @@
 package com.amritthakur.newsapp.presentation.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.amritthakur.newsapp.presentation.navigation.NavigationChannel
 import com.amritthakur.newsapp.presentation.navigation.NavigationEvent
 import javax.inject.Inject
@@ -16,7 +17,7 @@ interface HomeOutput
 
 class HomeViewModel @Inject constructor(
     private val navigationChannel: NavigationChannel
-) : HomeInput, HomeOutput {
+) : ViewModel(), HomeInput, HomeOutput {
 
     override val onTopHeadLines: () -> Unit = {
         navigationChannel.postEvent(HomeNavigationEvent.NavigateToTopHeadlines)

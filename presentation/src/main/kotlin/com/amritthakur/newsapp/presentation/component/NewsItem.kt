@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.amritthakur.newsapp.presentation.R
 import com.amritthakur.newsapp.domain.entity.Article
+import com.amritthakur.newsapp.presentation.R
 
 @Composable
 fun NewsItem(

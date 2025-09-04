@@ -21,14 +21,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
+import com.amritthakur.newsapp.domain.entity.Article
 import com.amritthakur.newsapp.presentation.R
 import com.amritthakur.newsapp.presentation.component.EmptyView
 import com.amritthakur.newsapp.presentation.component.ErrorView
 import com.amritthakur.newsapp.presentation.component.LoadingView
 import com.amritthakur.newsapp.presentation.component.NewsItem
-import com.amritthakur.newsapp.domain.entity.Article
 import com.amritthakur.newsapp.presentation.viewmodel.SearchInput
 import com.amritthakur.newsapp.presentation.viewmodel.SearchOutput
 
