@@ -1,12 +1,8 @@
-// NewsApp - Dagger Edition
-// Clean Architecture + MVVM + Dagger 2 for Dependency Injection
-// For Hilt version, see: NewsApp-MVVM-Clean-Hilt repository
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -73,7 +69,6 @@ android {
 }
 
 dependencies {
-    // Module dependencies
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":presentation"))
@@ -86,15 +81,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-    // Navigation
     implementation(libs.navigation.compose)
-
-    // Dagger 2
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
-
-    // Networking (for NetworkModule)
     implementation(libs.retrofit)
     implementation(libs.retrofit.moshi)
     implementation(libs.okhttp)
